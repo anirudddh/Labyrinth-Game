@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<style>
+
+canvas
+{
+	background-color:#f1f1f1;
+}
+
+body
+{
+	background-color:#f1f1f1;
+}
+#center
+{
+	display:flex;
+	justify-content:center;
+}
+#set
+{
+	position : fixed;
+	bottom :20px;
+	right:770px;
+	text-align:center;
+	font-size:60px;
+	
+}
+
+
+.footer {
+  height: 50px;
+  background-color: var(--main-bg-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: light-grey;
+  flex-direction: column;
+}
+
+.footer a {
+  color: light-grey;
+  }
+</style>
+</head>
+
+
+<body onload="startGame()">
+
+<script>
+
+var block = [];
+
+function startGame()
+{
+	myGameArea.start();
+	block.push(new component(320 , 30 , "black" , 400 , 50));
+	block.push( new component(120 , 30 , "black"  , 780  , 50));
+	block.push(new component(30 , 470 , "black" , 400 , 80));	
+	block.push(new component(50 , 30 , "black" , 410 , 100));
+	block.push(new component(30 , 200 , "black" , 500 , 80));
+	block.push(new component(40 , 30 , "black" , 460 , 170));
+	block.push(new component(120 , 30 , "black" , 500,230));
+	block.push(new component(30 , 60 , "black" , 590 , 170));
+	block.push(new component(70 , 30 , "black" , 590 , 120));
+	block.push(new component(30 , 60 , "black" , 690 , 80));
+
+
+
+	block.push(new component(80 , 30 , "black" , 710 , 110));
+	block.push(new component(30 , 470 , "black" , 870 , 80));
+	block.push(new component(40 , 30 , "black" , 430 , 250));
+	block.push(new component(70 , 30 , "black" , 430 , 320));
+	block.push(new component(30 , 30 , "black" , 500 , 320));
+	block.push(new component(90 , 30 , "black" , 570 , 320));
+	block.push(new component( 30 , 70, "black" , 630 , 350));
+	block.push(new component(110 , 30 , "black" , 520 , 390));
+	block.push(new component(30 , 90 , "black" , 520 , 390));
+	block.push(new component( 30, 60 ,"black" , 430 , 390));
+	block.push(new component(260 , 30 , "black" , 430,520));
+	block.push(new component(170 , 30 ,"black" , 730 , 520)); 
+	block.push(new component(30 , 100 ,"black" , 640 , 450));
+	block.push(new component(30 , 50 , "black" , 570 , 480));
+	block.push(new component(50 , 40 , "black" , 430 , 480));
+	block.push(new component(30,80,"black" , 670 , 190));
+	block.push(new component( 60 , 30 , "black" , 670 , 450));
+	block.push(new component(30 , 50 , "black" , 700 , 400)); 
+	block.push(new component(50 , 30 , "black" , 730 , 400));
+	block.push(new component(30 , 50 , "black" , 740 , 360));
+	block.push(new component(30 , 60 , "black" , 690 , 290));
+	block.push(new component(70 , 30 , "black" , 710 , 300));
+	block.push(new component(30 , 70 , "black" , 750 , 170));
+	block.push(new component(50 , 30 , "black" , 780 , 170));
+	block.push(new component(30 , 70 , "black" , 800 , 200));
+	block.push(new component(50 , 30 , "black" , 820 , 240));
+	block.push(new component(30 , 100 , "black" , 810 , 300));
+	block.push(new component(30,30,"black" , 840 , 370));
+	block.push(new component(80 , 30 , "black" , 790 , 460));
+
+	usertoken = new component( 20 , 20 , "yellow" ,  700 , 520);
+	
+}
+
+var myGameArea = 
+{
+	canvas : document.createElement("canvas"),
+	start : function()
+	{
+		this.canvas.width= 1000;
+		this.canvas.height = 550;
+		this.context = this.canvas.getContext("2d");
+		document.body.insertBefore(this.canvas , document.body.childNodes[0]);
+		this.interval = setInterval(updateGameArea , 20);
+		
+
+	window.addEventListener('keydown' , function(e)
+	{
+		myGameArea.key = e.keyCode;
+	})
+	window.addEventListener('keyup' , function(e)
+	{
+		myGameArea.key = false;
+	})
+
+	},
+
+	clear : function()
+	{
+		this.context.clearRect( 0 , 0 , this.canvas.width , this.canvas.height);
+	},
+
+	stop : function()
+	{
+		clearInterval(this.interval);
+		
+	}
+}
+
+function component(width , height , color , x ,y , type)
+{
+	this.type = type;
+	this.width = width;
+	this.height = height;
+	this.x = x;
+	this.y=y;
+	this.update = function()
+	{
+		ctx = myGameArea.context;
+		if(type=="image")
+		{
+			this.image = new Image();
+			this.image.src = color;
+		}
+		else
+		{
+		ctx.fillStyle = color;
+		ctx.fillRect(this.x , this.y , this.width , this.height);
+		}
+	}
+
+	this.crashWith = function(other)
+	{
+		var myl = this.x;
+		var myr = this.x + (this.width);
+		var myt = this.y;
+		var myb = this.y + (this.height);
+		
+		var otherl = other.x;
+		var otherr = other.x + (other.width);
+		var othert = other.y;
+		var otherb = other.y + (other.height);
+
+		var crash = true;
+
+		if((myb < othert) || (myt > otherb) || (myr <otherl) || (myl>otherr))
+		{
+			crash = false;
+		}
+		
+		return crash;
+	}
+}
+
+function updateGameArea()
+{
+	myGameArea.clear();
+	for(i=0;i<block.length ; i=i+1)
+	{
+		if(usertoken.crashWith(block[i]))
+		{
+			myGameArea.stop();
+			window.open("gameover.html" );
+			window.close();
+			return;
+		}
+	}
+	if(usertoken.x >= 200 && usertoken.x <= 1000 && usertoken.y >=10 && usertoken.y<=70)
+	{
+		window.open("levelcomplete.html");
+		window.close();
+		return;
+	}
+	if ( myGameArea.key && myGameArea.key == 37)
+	{
+		usertoken.x = usertoken.x -1;
+	}
+	if( myGameArea.key && myGameArea.key==39)
+	{
+		usertoken.x = usertoken.x + 1;
+	}
+	if( myGameArea.key && myGameArea.key == 38)
+	{
+		usertoken.y = usertoken.y - 1;	
+	}
+	if( myGameArea.key && myGameArea.key == 40)
+	{
+		usertoken.y = usertoken.y + 1;
+	}
+	for(i=0;i<block.length;i++)
+		block[i].update();
+	usertoken.update();
+}
+
+
+</script>
+<br>
+<div id="center">
+<h2 id="set">Level 1</h2>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<footer class="w3-container w3-padding-16 w3-light-grey">
+    
+    
+    <div class="footer">
+       <center><p>Copyright &copy; 2022 All Rights Reserved | Game made by <a href="https://linktr.ee/Anirudddh" >Aniruddha Rajendra Shinde</a>  </p></center> 
+        
+    </div>
+  </footer>
+
+</body>

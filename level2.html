@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<style>
+
+canvas
+{
+	background-color:#f1f1f1;
+}
+
+body
+{
+	background-color:#f1f1f1;
+}
+
+#level
+{
+	position:fixed;
+	
+	left:400px;
+}
+
+
+.footer {
+  height: 50px;
+  background-color: var(--main-bg-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: light-grey;
+  flex-direction: column;
+}
+
+.footer a {
+  color: light-grey;
+  }
+</style>
+</head>
+
+
+<body onload="startGame()">
+
+<script>
+
+var block = [];
+
+function startGame()
+{
+	myGameArea.start();
+	
+	block.push(new component(460 , 10, "black" , 240 , 0));
+	block.push(new component(10 , 500 , "black" , 200 , 0));
+	block.push(new component(10 , 30 , "black" , 260 , 10));
+	block.push(new component(40 , 10 , "black" , 260 , 40));
+	block.push(new component(10 , 50 , "black" , 290, 40));
+	block.push(new component(210 , 10 , "black" , 290, 90));
+	block.push(new component(80 , 10 , "black" , 320 , 60));
+	block.push(new component(10 , 30 , "black " , 320 , 30));
+	block.push(new component(110 , 10 , "black" , 320 , 30));
+	block.push(new component(10 , 60 , "black" , 420 , 30));
+	block.push(new component(10 , 60 , "black" , 450 , 10));
+	block.push(new component(10 , 10 , "black" , 460 , 60));
+	block.push(new component(10 , 50 , "black" , 490 , 40));
+	block.push(new component(20 , 10 , "black" , 480 , 30));
+	block.push(new component(10 , 90 , "black" , 530 , 10));
+	block.push(new component(30 , 10 , "black" , 520 , 90));
+	block.push(new component(10 , 50 , "black" , 560 , 30));
+	block.push(new component(40 , 10  ,"black" , 570 , 30));
+	block.push(new component(10 , 50 , "black" , 600 , 40));
+	block.push(new component(50 , 10 , "black" , 610 , 80));
+	block.push(new component(10 , 20 , "black" , 620 , 10));
+	block.push(new component(10 , 50 , "black" , 640 , 10));
+	block.push(new component(10 , 50 , "black" , 670 , 40));
+	block.push(new component(10 , 10  , "black" , 680 , 80));
+	block.push(new component(10 , 500 , "black" , 690 , 0));
+	block.push(new component(10 , 150 , "black" , 220 , 30));
+	block.push(new component(10 , 10 , "black" , 210 , 170));
+	block.push(new component(40 , 10 ,"black" , 230 , 60));
+	block.push(new component(20 , 10, "black" , 230 , 110));
+	block.push(new component(30 , 10 , "black" , 240 , 90));
+	block.push(new component(10 , 50 , "black" ,  260 , 100));
+	block.push(new component(120 , 10 , "black" , 250 , 150));
+	block.push(new component(10 , 40 , "black" , 280 , 110));
+	block.push(new component(10 , 40 , "black" , 310 , 100));
+	
+	block.push(new component(10 , 20 , "black" , 350 , 130));
+	block.push(new component(30 , 10 , "black" , 360 , 130));
+	block.push(new component(10 , 40 , "black" , 380 , 140));
+	block.push(new component(10 , 70 , "black" , 410 , 100));
+	block.push(new component(70 , 10 , "black" , 420 , 140));
+	block.push(new component(10 , 40 , "black" , 490 , 110));
+	block.push(new component(100 , 10 , "black" , 500 , 110));
+	block.push(new component(100 , 10 , "black" , 540 , 140));
+	block.push(new component(10 , 30 , "black" , 610 , 110));
+	block.push(new component(80 , 10 , "black" , 620 , 110));
+	block.push(new component(10 , 300 , "black" , 240 , 200));
+
+	block.push(new component(450 , 10 , "black" , 210 , 490));
+	block.push(new component(20 , 10 , "black" , 210 , 230));
+	block.push(new component(20 , 10 , "black" , 220 , 270));
+	block.push(new component(10 , 40 ,"black" , 220 , 280));
+	block.push(new component(30 , 10 , "black" , 220 , 350));
+	block.push(new component(20 , 10 , "black" , 210 , 390));
+	block.push(new component(10 , 50 , "black" , 220 , 430));
+	block.push(new component(10, 10 , "black" , 230 , 470));
+	
+	block.push(new component(10 , 220 , "black" , 270 , 250));
+	block.push(new component(40, 10, "black" , 240 , 220));
+	block.push(new component(30 , 10 , "black" , 270 , 250));
+	block.push(new component(10 , 70 , "black" , 300 , 190));
+	block.push(new component(40 , 10 , "black" , 310 , 190));
+	block.push(new component(10 , 40 , "black" , 350 , 160));
+	block.push(new component(10 , 100 , "black" , 330 , 220));
+	block.push(new component(40 , 10 , "black" , 300 , 280));
+	block.push(new component(10 , 30 , "black" , 300 , 290));
+	block.push(new component(60 , 10 , "black" , 340 , 310));
+	block.push(new component(10 , 30 , "black" , 390 , 280));
+	block.push(new component(30 , 10 , "black" , 360 , 280));
+	block.push(new component(10 , 40 , "black" , 360 , 240));
+
+	block.push(new component(10 , 60 , "black" , 380 , 200));
+	block.push(new component(20 , 10 , "black" , 390 , 210));
+	block.push(new component(20 , 10 , "black" , 400 , 240));
+	block.push(new component(10 , 90 , "black" , 420 , 190));
+	block.push(new component(90 , 10  , "black" , 430 , 190));
+	block.push(new component(10 , 60 , "black" , 520 , 160));
+	block.push(new component(10 , 90 , "black" , 550 , 150)); 
+	block.push(new component(60 , 10 , "black" , 560 , 200));
+	block.push(new component(10 , 30 , "black" , 620 , 200));
+	block.push(new component(30 , 10 , "black" , 630 , 220));
+	block.push(new component(10 , 90 , "black" , 650 , 180));
+
+
+
+	block.push(new component(50 , 10 , "black" , 580 , 170));
+	block.push(new component(10 , 10 , "black" , 620 , 160));
+	block.push(new component(60 , 10 , "black" , 630 , 160));
+	
+
+	block.push(new component(50 , 10 , "black" , 280 , 460));
+	block.push(new component(10 , 20 , "black" , 320 , 440));
+	block.push(new component(20 , 10 , "black" , 330 , 440));
+	block.push(new component(10 , 20 , "black" , 340 , 450));
+	block.push(new component(90 , 10 , "black" , 280 , 410));
+	block.push(new component(10 , 90 , "black" , 370 , 410));
+	block.push(new component(10 , 20 , "black" , 290 , 420));
+
+
+	block.push(new component(10 , 60 , "black" , 350 , 320));
+	block.push(new component(50 , 10 , "black" , 280 , 340));
+	block.push(new component(10 , 20 , "black" , 290 , 360));
+	block.push(new component(30 , 10 , "black" , 300 , 370));
+	block.push(new component(10 , 20 , "black" , 320 , 380));
+	block.push(new component(70 , 10 , "black" , 330 , 390));
+
+
+	block.push(new component(10 , 100 , "black" , 450 , 220));
+	block.push(new component(50 , 10  ,"black" , 460 , 250));
+	block.push(new component(10 , 20 , "black" , 500 , 260));
+	block.push(new component(60 , 10 , "black" , 510 , 270));
+	block.push(new component(10 , 30 , "black" , 560 , 280));
+	block.push(new component(60 , 10 , "black" , 570, 300));
+	block.push(new component(100 , 10 , "black" , 600 , 280));
+	block.push(new component(10 , 50 , "black" , 580 , 210));
+
+
+	block.push(new component(120 , 10 , "black" , 380 , 340));
+	block.push(new component(10 , 70 , "black" , 480 , 280));
+	block.push(new component(40 , 10 , "black" , 380 , 370));
+	block.push(new component(10 , 50 , "black" , 410 , 380));
+	block.push(new component(30 , 10 , "black" , 390 , 420));
+	
+	block.push(new component(10 , 100 , "black" , 440 , 370));
+	block.push(new component(50 , 10 , "black" , 390 , 450));
+	block.push(new component(70 , 10 , "black" , 450 , 370));
+	block.push(new component(10 , 70 , "black" , 510 , 300));
+
+
+	block.push(new component(10 , 60 , "black" , 590 , 310));
+	block.push(new component(70 , 10 , "black" , 540 , 340));
+	block.push(new component(10 , 20 , "black" , 540 , 360));
+	block.push(new component(90 , 10 , "black" , 540 , 380));
+	block.push(new component(10 , 60 , "black" , 620 , 320));
+	block.push(new component(60 , 10 , "black" , 630 , 320));
+
+
+	block.push(new component(10 , 90 , "black" , 470 , 410));
+	block.push(new component(70 , 10 , "black" , 480 , 410));
+	block.push(new component(10 , 30 , "black" , 540 , 420));
+	block.push(new component(30 , 10 , "black" , 510 , 440));
+	block.push(new component(10 , 30 ,"black" , 540 , 460));
+	block.push(new component(30 , 10 , "black" , 550 , 460));
+	block.push(new component(10 , 50 , "black" , 570 , 410));
+	block.push(new component(10 , 70 , "black" , 600 , 420));
+	block.push(new component(40 , 10 , "black" , 650 , 350));
+	block.push(new component(10 , 40 , "black" , 650 , 360));
+	block.push(new component(50 , 10 , "black" , 640 , 430));
+	block.push(new component(10 , 30 , "black" , 640 , 440));
+	
+	
+
+	usertoken = new component( 7 , 7 , "red" ,  670 , 490);
+	
+}
+
+var myGameArea = 
+{
+	canvas : document.createElement("canvas"),
+	start : function()
+	{
+		this.canvas.width= 800;
+		this.canvas.height = 500;
+		this.context = this.canvas.getContext("2d");
+		document.body.insertBefore(this.canvas , document.body.childNodes[0]);
+		this.interval = setInterval(updateGameArea , 20);
+
+	window.addEventListener('keydown' , function(e)
+	{
+		myGameArea.key = e.keyCode;
+	})
+	window.addEventListener('keyup' , function(e)
+	{
+		myGameArea.key = false;
+	})
+
+	},
+
+	clear : function()
+	{
+		this.context.clearRect( 0 , 0 , this.canvas.width , this.canvas.height);
+	},
+
+	stop : function()
+	{
+		clearInterval(this.interval);
+		
+	}
+}
+
+function component(width , height , color , x ,y , type)
+{
+	this.type = type;
+	this.width = width;
+	this.height = height;
+	this.x = x;
+	this.y=y;
+	this.update = function()
+	{
+		ctx = myGameArea.context;
+		if(type=="image")
+		{
+			this.image = new Image();
+			this.image.src = color;
+		}
+		else
+		{
+		ctx.fillStyle = color;
+		ctx.fillRect(this.x , this.y , this.width , this.height);
+		}
+	}
+
+	this.crashWith = function(other)
+	{
+		var myl = this.x;
+		var myr = this.x + (this.width);
+		var myt = this.y;
+		var myb = this.y + (this.height);
+		
+		var otherl = other.x;
+		var otherr = other.x + (other.width);
+		var othert = other.y;
+		var otherb = other.y + (other.height);
+
+		var crash = true;
+
+		if((myb < othert) || (myt > otherb) || (myr <otherl) || (myl>otherr))
+		{
+			crash = false;
+		}
+		
+		return crash;
+	}
+}
+
+function updateGameArea()
+{
+	myGameArea.clear();
+	for(i=0;i<block.length ; i=i+1)
+	{
+		if(usertoken.crashWith(block[i]))
+		{
+			myGameArea.stop();
+			window.open("gameover.html" );
+			window.close();
+			return;
+		}
+	}
+	if(usertoken.x >= 210 && usertoken.x <= 250 && usertoken.y >=0 && usertoken.y<=30)
+	{
+		window.open("levelcomplete.html");
+		window.close();
+		return;
+	}
+	if ( myGameArea.key && myGameArea.key == 37)
+	{
+		usertoken.x = usertoken.x -1;
+	}
+	if( myGameArea.key && myGameArea.key==39)
+	{
+		usertoken.x = usertoken.x + 1;
+	}
+	if( myGameArea.key && myGameArea.key == 38)
+	{
+		usertoken.y = usertoken.y - 1;	
+	}
+	if( myGameArea.key && myGameArea.key == 40)
+	{
+		usertoken.y = usertoken.y + 1;
+	}
+	for(i=0;i<block.length;i++)
+		block[i].update();
+	usertoken.update();
+}
+
+
+</script>
+
+<center><h2 id="level">Level 2</h2></center>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<footer class="w3-container w3-padding-16 w3-light-grey">
+    
+    
+    <div class="footer">
+       <center><p>Copyright &copy; 2022 All Rights Reserved | Game made by <a href="https://linktr.ee/Anirudddh" >Aniruddha Rajendra Shinde</a>  </p></center> 
+        
+    </div>
+  </footer>
+</body>
